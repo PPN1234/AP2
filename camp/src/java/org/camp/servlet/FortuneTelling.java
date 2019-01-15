@@ -12,8 +12,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.Random;
-
+import javax.servlet.RequestDispatcher;
+import org.camp.servlet.ResultData;
 /**
  *
  * @author c0116043
@@ -34,20 +36,30 @@ public class FortuneTelling extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String luckList[] ={"大吉","中吉","小吉","吉","半吉","末小吉","凶","小凶","半凶","末凶","大凶"};
+String luckList[] = {"大吉", "中吉", "小吉", "吉", "半吉", "末小吉", "凶", "小凶", "半凶", "末凶", "大凶"};
+            //String result="/Users/c0116043/NetBeansProjects/camp/web/WEB-INF/jsp/FortuneTellingResult.jsp";
+            Random rand = new Random();
+            Integer index = rand.nextInt(luckList.length);
+            ResultData data = new ResultData();
+            data.setD(new Date());
+            data.setLuck(luckList[index]);
+            request.setAttribute("DATA",data);        
             
-            Random rand=new Random();
-            Integer index =rand.nextInt(luckList.length);
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/FortuneTellingResult.jsp");
+            rd.forward(request, response);
+            
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet FortuneTelling</title>");            
+            out.println("<title>Servlet FortuneTelling</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("今日のあなたの運勢は"+luckList[index]);           
+            
+            out.println("今日のあなたの運勢は。。。"+luckList[index]);
             out.println("</body>");
             out.println("</html>");
+            
         }
     }
 

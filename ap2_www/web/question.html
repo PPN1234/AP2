@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>アンケート入力</title>
+    </head>
+    <body>
+      <form action="./servlet/QuestionServlet" method="post">
+           <table>
+               <li>名前:<br>
+                   <input type="text" name="name">
+               </li>
+               <li>性別:<br>
+                   <select name="sex">
+                       <option value="1">１:男性</option>
+                       <option value="2">２:女性</option>
+                   </select>
+               </li>
+               <li>あなたが求める容姿<br>
+                   <input type="checkbox" name="visual1" value="1" checked="checked">身長
+                    <input type="checkbox" name="visual2" value="2">顔
+                     <input type="checkbox" name="visual3" value="3">スタイル
+                      <input type="checkbox" name="visual4" value="4">メガネ
+               </li>
+               <li>学年<br>
+                   <input type="radio" name="grade" value="1">１年
+                    <input type="radio" name="grade" value="2">２年
+                     <input type="radio" name="grade" value="3">３年
+                      <input type="radio" name="grade" value="4">４年
+               </li>
+           </table>
+        <input type="submit" value="送信">
+    </form>
+    </body>
+</html>
